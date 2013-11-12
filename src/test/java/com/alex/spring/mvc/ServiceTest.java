@@ -14,7 +14,7 @@ public class ServiceTest {
 	private GenericXmlApplicationContext ctxt;
 	private ContactService service;
 	
-	
+	@Before
 	public void initContext(){
 		ctxt = new GenericXmlApplicationContext();
 		ctxt.load("root-context.xml");
@@ -24,7 +24,6 @@ public class ServiceTest {
 	}
 	
 	@Test(expected = NullPointerException.class)
-	@Ignore
 	public void test() {
 		service.findAllContacts();
 	}

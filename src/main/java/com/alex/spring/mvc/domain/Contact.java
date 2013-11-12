@@ -1,17 +1,23 @@
 package com.alex.spring.mvc.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name  = "contact")
@@ -25,7 +31,9 @@ public class Contact implements Serializable {
 		private int version;
 		private String firstName;
 		private String lastName;
-		private Date birthDate;
+		private DateTime birthDate;
+		private String description;
+		private byte[] photo;
 		
 		public Contact() {
 		}
@@ -94,17 +102,58 @@ public class Contact implements Serializable {
 		/**
 		 * @return the birthDate
 		 */
-		@Temporal(TemporalType.DATE)
 		@Column(name = "birth_date")
-		public Date getBirthDate() {
+		@Type(type = "org.joda.time.contrlib.hibernate.PersistentDateTime")
+		@DateTimeFormat(iso = ISO.DATE)
+		public DateTime getBirthDate() {
 			return birthDate;
+		}
+		
+		@Transient
+		public String getBirthDateString(){
+			String result = "NONE";
+			if(birthDate != null){
+				result = org.joda.time.format.DateTimeFormat.forPattern("dd-MM-yyyy").print(birthDate);
+			}
+			return result;
 		}
 
 		/**
 		 * @param birthDate the birthDate to set
 		 */
-		public void setBirthDate(Date birthDate) {
+		public void setBirthDate(DateTime birthDate) {
 			this.birthDate = birthDate;
+		}
+
+		/**
+		 * @return the description
+		 */
+		public String getDescription() {
+			return description;
+		}
+
+		/**
+		 * @param description the description to set
+		 */
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+		/**
+		 * @return the photo
+		 */
+		@Column(name = "PHOTO")
+		@Lob
+		@Basic(fetch = FetchType.LAZY)
+		public byte[] getPhoto() {
+			return photo;
+		}
+
+		/**
+		 * @param photo the photo to set
+		 */
+		public void setPhoto(byte[] photo) {
+			this.photo = photo;
 		}
 
 		/* (non-Javadoc)
@@ -112,9 +161,10 @@ public class Contact implements Serializable {
 		 */
 		@Override
 		public String toString() {
-			return "Contact [id=" + id + ", version=" + version + ", firstName="
-					+ firstName + ", lastName=" + lastName + ", birthDate="
-					+ birthDate + "]";
+			return "Contact [id=" + id + ", version=" + version
+					+ ", firstName=" + firstName + ", lastName=" + lastName
+					+ ", birthDate=" + birthDate + ", description="
+					+ description + "]";
 		}
 		
 }
