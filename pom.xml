@@ -225,6 +225,12 @@ Error while loading [ class org.springframework.data.jpa.repository.support.Quer
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- For view in springMVC -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time-jsptags</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
