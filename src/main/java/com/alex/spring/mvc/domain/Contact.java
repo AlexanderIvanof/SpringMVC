@@ -72,7 +72,7 @@ public class Contact implements Serializable {
 		/**
 		 * @return the firstName
 		 */
-		@Column(name = "first_name")
+		@Column(name = "FIRST_NAME")
 		public String getFirstName() {
 			return firstName;
 		}
@@ -87,7 +87,7 @@ public class Contact implements Serializable {
 		/**
 		 * @return the lastName
 		 */
-		@Column(name = "last_name")
+		@Column(name = "LAST_NAME")
 		public String getLastName() {
 			return lastName;
 		}
@@ -102,8 +102,8 @@ public class Contact implements Serializable {
 		/**
 		 * @return the birthDate
 		 */
-		@Column(name = "birth_date")
-		@Type(type = "org.joda.time.contrlib.hibernate.PersistentDateTime")
+		@Column(name = "BIRTH_DATE")
+		@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
 		@DateTimeFormat(iso = ISO.DATE)
 		public DateTime getBirthDate() {
 			return birthDate;
@@ -128,6 +128,7 @@ public class Contact implements Serializable {
 		/**
 		 * @return the description
 		 */
+		@Column(name = "DESCRIPTION")
 		public String getDescription() {
 			return description;
 		}
@@ -142,9 +143,9 @@ public class Contact implements Serializable {
 		/**
 		 * @return the photo
 		 */
-		@Column(name = "PHOTO")
-		@Lob
 		@Basic(fetch = FetchType.LAZY)
+		@Lob
+		@Column(name = "PHOTO")
 		public byte[] getPhoto() {
 			return photo;
 		}
