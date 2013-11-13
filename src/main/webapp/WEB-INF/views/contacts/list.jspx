@@ -2,20 +2,26 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page"
 	 xmlns:c="http://java.sun.com/jsp/jstl/core"
 	 xmlns:joda="http://www.joda.org/joda/time/tags"
+	 xmlns:spring="http://www.springframework.org/tags"
 	 version="2.0">
 	<!-- Declare attributes for all pages  -->
 	<jsp:directive.page language="java"   contentType="text/html; charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
+	<spring:message code="label_contact_list" var="labelContactList" />
+	<spring:message code="label_contact_first_name" var="labelFirstName" />
+	<spring:message code="label_contact_last_name" var="labelLastName" />
+	<spring:message code="label_contact_birth_date" var="labelBirthDate" />
+	<spring:message code="date_format_pattern" var="dateFormat" />
 	
-	<h1 align="center">Contact list</h1>
+	<h1 align="center">${labelContactList}</h1>
 	
 	<c:if test="${not empty contacts}">
 		<table>
 			<thead>
 				<tr>
-					<th>Имя</th>
-					<th>Фамилия</th>
-					<th>Дата рождения</th>
+					<th>${labelFirstName}</th>
+					<th>${labelLastName}</th>
+					<th>${labelBirthDate}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,11 +29,19 @@
 					<tr>
 						<td>${contact.firstName}</td>
 						<td>${contact.lastName}</td>
-						<td><joda:format value="${contact.birthDate}" pattern="dd-MM-yyyy" /></td>
+						<td><joda:format value="${contact.birthDate}" pattern="${dateFormat}" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</c:if>
+	<c:choose>
+		<c:when test="${not empty contact}">
+				<h3>We have this contact. Detail: ${contact.firstName} ${contact.lastName}</h3>
+		</c:when>	
+		<c:otherwise>
+			<h3>We have no contact for id = ${cont_id}</h3>
+		</c:otherwise>
+	</c:choose>
 </div>
 

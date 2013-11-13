@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,6 +30,15 @@ public class ContactController {
 		uiModel.addAttribute("contacts", contacts);
 		logg.info("Size of contacts is " + contacts.size());
 		
+		return "contacts/list";
+	}
+	
+	@RequestMapping(value = "/contact/{id}")
+	public String getByID(Model uiModel, @PathVariable("id") Long id){
+		logg.info("Try to find contact");
+		Contact contact = service.findById(id);
+		uiModel.addAttribute("contact", contact);
+		uiModel.addAttribute("cont_id", id);
 		return "contacts/list";
 	}
 	
