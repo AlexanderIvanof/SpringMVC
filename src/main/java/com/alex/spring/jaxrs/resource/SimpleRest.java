@@ -12,7 +12,7 @@ public class SimpleRest {
 	public String getHello(){
 		System.out.println("In Secure rest with Spring Sequrity");
 		return "<html>" + "<body><b>Hello, my friend!</b><hr/>"
-				+ "<h2 align=\"center\">This is simple Rest servise with Spring Sequrity!!!</h2>"
+				+ "<h2 align=\"center\">This is simple Rest service with Spring Sequrity!!!</h2>"
 				+ "</body></html>";
 	}
 }

@@ -7,7 +7,7 @@
 	<jsp:directive.page language="java"   contentType="text/html; charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 	
-	<h1 align="center">Conact list</h1>
+	<h1 align="center">Contact list</h1>
 	
 	<c:if test="${not empty contacts}">
 		<table>

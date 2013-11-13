@@ -14,14 +14,14 @@ import com.alex.spring.mvc.domain.Contact;
 import com.alex.spring.mvc.service.ContactService;
 
 @Controller
-@RequestMapping("/contacts")
 public class ContactController {
 
 	final Logger logg = LoggerFactory.getLogger(ContactController.class);
 	
 	@Autowired
 	private ContactService service;
-	@RequestMapping(method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
 	public String list(Model uiModel){
 		logg.info("Try to get list of contacts");
 		
@@ -30,5 +30,10 @@ public class ContactController {
 		logg.info("Size of contacts is " + contacts.size());
 		
 		return "contacts/list";
+	}
+	
+	@RequestMapping("*")
+	public String index(){
+		return "index";
 	}
 }

@@ -233,7 +233,6 @@ Error while loading [ class org.springframework.data.jpa.repository.support.Quer
 		</dependency>
 	</dependencies>
     <build>
-    	<finalName>mvc</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
@@ -261,6 +260,13 @@ Error while loading [ class org.springframework.data.jpa.repository.support.Quer
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>mvc</warName>
+				</configuration>
+			</plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
