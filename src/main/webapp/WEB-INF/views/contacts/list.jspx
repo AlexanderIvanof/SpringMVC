@@ -41,13 +41,15 @@
 			</tbody>
 		</table>
 	</c:if>
-	<c:choose>
-		<c:when test="${not empty contact}">
-				<h3>We have this contact. Detail: ${contact.firstName} ${contact.lastName}</h3>
-		</c:when>	
-		<c:otherwise>
-			<h3>We have no contact for id = ${cont_id}</h3>
-		</c:otherwise>
-	</c:choose>
+	<c:if test="${empty contacts}">
+		<c:choose>
+			<c:when test="${not empty contact}">
+					<h3>We have this contact. Detail: ${contact.firstName} ${contact.lastName}</h3>
+			</c:when>	
+			<c:otherwise>
+				<h3>We have no contact for id = ${cont_id}</h3>
+			</c:otherwise>
+		</c:choose>
+	</c:if>
 </div>
 
