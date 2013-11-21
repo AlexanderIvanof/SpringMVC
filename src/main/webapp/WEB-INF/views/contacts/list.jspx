@@ -7,12 +7,18 @@
 	<!-- Declare attributes for all pages  -->
 	<jsp:directive.page language="java"   contentType="text/html; charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
+	<!-- Add i18n in page -->
 	<spring:message code="label_contact_list" var="labelContactList" />
 	<spring:message code="label_contact_first_name" var="labelFirstName" />
 	<spring:message code="label_contact_last_name" var="labelLastName" />
 	<spring:message code="label_contact_birth_date" var="labelBirthDate" />
 	<spring:message code="date_format_pattern" var="dateFormat" />
-	
+	<!-- Following code add theme for page-->
+	<head>
+		<spring:theme code="styleSheet" var="app_css" />
+		<spring:url value="/${app_css}" var="css_url" />
+		<link rel="stylesheet" type="text/css" media="screen" href="${css_url}" />
+	</head>
 	<h1 align="center">${labelContactList}</h1>
 	
 	<c:if test="${not empty contacts}">
