@@ -35,17 +35,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${contacts}" var="contact">
-					<tr>
-						<td>${contact.firstName}</td>
-						<td>${contact.lastName}</td>
-						<td><joda:format value="${contact.birthDate}" pattern="${dateFormat}" /></td>
-						<td>${contact.description}</td>
-					</tr>
-				</c:forEach>
+				<tr>
+					<td>${contact.firstName}</td>
+					<td>${contact.lastName}</td>
+					<td><joda:format value="${contact.birthDate}" pattern="${dateFormat}" /></td>
+					<td>${contact.description}</td>
+				</tr>
 			</tbody>
-			<a href="${editContactUrl}/${contact.id}?form">${labelContactUpdate}</a>
 		</table>
+		<a href="${editContactUrl}/${contact.id}?form">${labelContactUpdate}</a>
 	</div>
 </div>
 
