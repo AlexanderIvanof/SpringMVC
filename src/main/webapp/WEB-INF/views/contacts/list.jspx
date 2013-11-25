@@ -13,12 +13,9 @@
 	<spring:message code="label_contact_last_name" var="labelLastName" />
 	<spring:message code="label_contact_birth_date" var="labelBirthDate" />
 	<spring:message code="date_format_pattern" var="dateFormat" />
-	<!-- Following code add theme for page-->
-	<head>
-		<spring:theme code="styleSheet" var="app_css" />
-		<spring:url value="/${app_css}" var="css_url" />
-		<link rel="stylesheet" type="text/css" media="screen" href="${css_url}" />
-	</head>
+	
+	<spring:url value="/contact" var="showContactUrl" />
+	
 	<h1 align="center">${labelContactList}</h1>
 	
 	<c:if test="${not empty contacts}">
@@ -33,7 +30,7 @@
 			<tbody>
 				<c:forEach items="${contacts}" var="contact">
 					<tr>
-						<td>${contact.firstName}</td>
+						<td><a href="${showContactUrl}/${contact.id}">${contact.firstName}</a></td>
 						<td>${contact.lastName}</td>
 						<td><joda:format value="${contact.birthDate}" pattern="${dateFormat}" /></td>
 					</tr>
@@ -41,15 +38,6 @@
 			</tbody>
 		</table>
 	</c:if>
-	<c:if test="${empty contacts}">
-		<c:choose>
-			<c:when test="${not empty contact}">
-					<h3>We have this contact. Detail: ${contact.firstName} ${contact.lastName}</h3>
-			</c:when>	
-			<c:otherwise>
-				<h3>We have no contact for id = ${cont_id}</h3>
-			</c:otherwise>
-		</c:choose>
-	</c:if>
+	
 </div>
 

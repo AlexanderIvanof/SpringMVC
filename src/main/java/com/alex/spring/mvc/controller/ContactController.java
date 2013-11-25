@@ -33,13 +33,13 @@ public class ContactController {
 		return "contacts/list";
 	}
 	
-	@RequestMapping(value = "/contact/{id}")
+	@RequestMapping(value = "/contact/{id}", method = RequestMethod.GET)
 	public String getByID(Model uiModel, @PathVariable("id") Long id){
 		logg.info("Try to find contact");
 		Contact contact = service.findById(id);
 		uiModel.addAttribute("contact", contact);
 		uiModel.addAttribute("cont_id", id);
-		return "contacts/list";
+		return "contacts/show";
 	}
 	
 	@RequestMapping("*")
