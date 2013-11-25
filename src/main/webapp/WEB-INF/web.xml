@@ -42,7 +42,7 @@
 	
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/restful/*</url-pattern>
+		<url-pattern>/service/restful/*</url-pattern>
 	</filter-mapping>
 	<!-- Filters in Spring MVC -->
 	<filter>
